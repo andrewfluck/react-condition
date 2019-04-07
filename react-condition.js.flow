@@ -1,0 +1,5 @@
+// @flow
+
+declare function If({ test: any, children: React$Node }): React$Node;
+declare function ElseIf({ test: any, children: React$Node }): React$Node;
+declare function Else({ children: React$Node }): React$Node;

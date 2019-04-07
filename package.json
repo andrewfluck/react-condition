@@ -1,0 +1,33 @@
+{
+    "name": "react-condition",
+    "version": "1.0.0",
+    "description": "React Condition works with React Hooks as part of @leebyron's React Velcro architecture",
+    "main": "react-condition.js",
+    "types": "react-condition.d.ts",
+    "repository": "https://github.com/andrewfluck/react-condition",
+    "license": "MIT",
+    "scripts": {
+        "test": "yarn prettier && jest",
+        "prettier": "prettier --check *.{js,ts,flow}"
+    },
+    "files": [
+        "package.json",
+        "README.md",
+        "react-condition.js",
+        "react-condition.js.flow",
+        "react-condition.d.ts"
+    ],
+    "peerDependencies": {
+        "react": ">= 15.0.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.4.0",
+        "@babel/preset-env": "^7.4.2",
+        "@babel/preset-react": "^7.0.0",
+        "jest": "^24.5.0",
+        "prettier": "1.16.4",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-test-renderer": "^16.8.6"
+    }
+}
