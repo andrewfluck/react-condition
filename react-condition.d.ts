@@ -14,7 +14,7 @@ export function Else(props: { children: React.ReactNode }): React.ReactNode;
 
 export function Switch(props: {
   expression: any;
-  children: Case | Default;
+  children: Case | Default | null;
 }): React.ReactNode;
 
 export function Case(props: {

@@ -186,6 +186,18 @@ describe("react-condition", () => {
           "<Default> is required to be the last node if present."
         );
       });
+
+      it("requires case default or null", () => {
+        expectRenderToThrow(
+          <Switch expression="red">
+            <p>Uh oh 🙊🙉</p>
+            <Case value="red" then={"red"} />
+            <Case value="green" then={"green"} />
+            <Case value="blue" then={"blue"} />
+          </Switch>,
+          "<Switch> requires a child of type <Case>, <Default>, or null."
+        );
+      });
     });
   });
 });

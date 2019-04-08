@@ -78,6 +78,12 @@ function Switch(props) {
   Children.forEach(props.children, (child, i) => {
     if (match) return;
 
+    if (child.type !== Case && child.type !== Default && child !== null) {
+      throw new TypeError(
+        "<Switch> requires a child of type <Case>, <Default>, or null."
+      );
+    }
+
     if (i + 1 === count) {
       if (child.type === Default) {
         match = child;
@@ -108,17 +114,19 @@ function Case(props) {
     throw new TypeError("<Case> expects either a `then` prop or children.");
   }
 
-  return props.then || props.children;
+  return props.then || props.children || null;
 }
 
 function Default(props) {
   var hasThen = props.hasOwnProperty("then");
 
   if ((hasThen ^ props.hasOwnProperty("children")) === 0) {
-    throw new TypeError("<Case> expects either a `then` prop or children.");
+    throw new TypeError(
+      "<Default> expects either a `then` prop or children. Remove <Default> for null."
+    );
   }
 
-  return props.then || props.children;
+  return props.then || props.children || null;
 }
 
 Object.defineProperties(exports, {
