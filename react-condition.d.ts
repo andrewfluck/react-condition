@@ -2,7 +2,6 @@
 
 export function If(props: {
   test: any;
-  then?: React.ReactNode;
   children: React.ReactNode;
 }): React.ReactNode;
 
@@ -15,8 +14,7 @@ export function Else(props: { children: React.ReactNode }): React.ReactNode;
 
 export function Switch(props: {
   expression: any;
-  then?: React.ReactNode;
-  children: React.ReactNode;
+  children: Case | Default;
 }): React.ReactNode;
 
 export function Case(props: {
