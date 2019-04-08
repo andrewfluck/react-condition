@@ -3,3 +3,7 @@
 declare function If({ test: any, children: React$Node }): React$Node;
 declare function ElseIf({ test: any, children: React$Node }): React$Node;
 declare function Else({ children: React$Node }): React$Node;
+
+declare function Select({ expression: any, children: React$Node }): React$Node;
+declare function Case({ value: any, children: React$Node }): React$Node;
+declare function Default({ children: React$Node }): React$Node;

@@ -1,4 +1,5 @@
-var React = require('react');
+var React,
+  { Children, createElement, useState } = require("react");
 
 /**
  * Use the `test` prop with `<If>` and `<ElseIf>` elements to conditionally
@@ -35,39 +36,97 @@ var React = require('react');
  *
  */
 function If(props) {
-    var hasTest = props.hasOwnProperty('test');
-    if (!hasTest && !props.hasOwnProperty('case')) {
-        throw new TypeError('<If> requires a `test` prop.');
-    }
-    var condition = Boolean(hasTest ? props.test : props.case);
-    var hasElse = props.hasOwnProperty('else');
-    var hasThen = props.hasOwnProperty('then');
-    if (hasElse && !hasThen) {
-        throw new TypeError('<If> only use `else` prop alongside `then` prop.');
-    }
-    if ((hasThen ^ props.hasOwnProperty('children')) === 0) {
-        throw new TypeError('<If> expects either a `then` prop or children.');
-    }
-    if (hasThen) {
-        return condition ? props.then : hasElse ? props.else : null;
-    }
-    return React.Children.map(props.children, function (child) {
-        var isElse = child.type === Else || child.type === ElseIf;
-        return condition !== isElse ? child : null;
-    });
+  var hasTest = props.hasOwnProperty("test");
+  if (!hasTest && !props.hasOwnProperty("case")) {
+    throw new TypeError("<If> requires a `test` prop.");
+  }
+  var condition = Boolean(hasTest ? props.test : props.case);
+  var hasElse = props.hasOwnProperty("else");
+  var hasThen = props.hasOwnProperty("then");
+  if (hasElse && !hasThen) {
+    throw new TypeError("<If> only use `else` prop alongside `then` prop.");
+  }
+  if ((hasThen ^ props.hasOwnProperty("children")) === 0) {
+    throw new TypeError("<If> expects either a `then` prop or children.");
+  }
+  if (hasThen) {
+    return condition ? props.then : hasElse ? props.else : null;
+  }
+  return Children.map(props.children, function(child) {
+    var isElse = child.type === Else || child.type === ElseIf;
+    return condition !== isElse ? child : null;
+  });
 }
 
 function Else(props) {
-    return props.children;
+  return props.children;
 }
 
 function ElseIf(props) {
-    return React.createElement(If, props);
+  return createElement(If, props);
+}
+
+function Switch(props) {
+  var match = null;
+  var count = Children.count(props.children);
+
+  var hasExpression = props.hasOwnProperty("expression");
+  if (!hasExpression) {
+    throw new TypeError("<Switch> requires an `expression` prop.");
+  }
+
+  Children.forEach(props.children, (child, i) => {
+    if (match) return;
+
+    if (i + 1 === count) {
+      if (child.type === Default) {
+        match = child;
+      }
+    } else {
+      if (child.type === Default) {
+        throw new TypeError(
+          "<Default> is required to be the last node if present."
+        );
+      }
+    }
+
+    child.props.value === props.expression ? (match = child) : null;
+  });
+
+  return match;
+}
+
+function Case(props) {
+  var hasValue = props.hasOwnProperty("value");
+  var hasThen = props.hasOwnProperty("then");
+
+  if (!hasValue) {
+    throw new TypeError("<Case> requires an `value` prop.");
+  }
+
+  if ((hasThen ^ props.hasOwnProperty("children")) === 0) {
+    throw new TypeError("<Case> expects either a `then` prop or children.");
+  }
+
+  return props.then || props.children;
+}
+
+function Default(props) {
+  var hasThen = props.hasOwnProperty("then");
+
+  if ((hasThen ^ props.hasOwnProperty("children")) === 0) {
+    throw new TypeError("<Case> expects either a `then` prop or children.");
+  }
+
+  return props.then || props.children;
 }
 
 Object.defineProperties(exports, {
-    If: { enumerable: true, value: If },
-    Else: { enumerable: true, value: Else },
-    ElseIf: { enumerable: true, value: ElseIf },
-    __esModule: { value: true }
+  If: { enumerable: true, value: If },
+  Else: { enumerable: true, value: Else },
+  ElseIf: { enumerable: true, value: ElseIf },
+  Switch: { enumerable: true, value: Switch },
+  Case: { enumerable: true, value: Case },
+  Default: { enumerable: true, value: Default },
+  __esModule: { value: true }
 });
