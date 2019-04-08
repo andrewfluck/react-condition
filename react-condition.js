@@ -58,6 +58,52 @@ function If(props) {
   });
 }
 
+/**
+ * Use the `expression` prop with `<Switch>` element to conditionally include
+ * certain elements. When an `<Switch>` compares a value from `<Case>` and the
+ * comparison is _truthy_ it _only_ renders the matching child. However, when
+ * the comparison is _falsey_ it continues through the children until it finds
+ * a match, or falls back to `<Default>`.
+ *
+ *   <Switch expression={"blue"}>
+ *       <Case value={"red"}>
+ *           red
+ *       </Case>
+ *       <Case value={"green"}>
+ *           green
+ *       </Case>
+ *       <Case value={"blue"}>
+ *           blue
+ *       </Case>
+ *   </Switch>
+ *
+ *
+ *   <Switch expression={"hot fucking pink"}>
+ *       <Case value={"red"}>
+ *           red
+ *       </Case>
+ *       <Case value={"green"}>
+ *           green
+ *       </Case>
+ *       <Case value={"blue"}>
+ *           blue
+ *       </Case>
+ *       <Default>
+ *           no color
+ *       </Default>
+ *   </Switch>
+ *
+ *
+ * Alternatively, you can provide `then` as props to `<Case>` or `<Default>`
+ *
+ *   <Switch expression={"hot fucking pink"}>
+ *       <Case value={"red"} then={"red"} />
+ *       <Case value={"red"} then={"green"} />
+ *       <Case value={"red"} then={"blue"} />
+ *       <Default then={"no color"} />
+ *   </Switch>
+ *
+ */
 function Else(props) {
   return props.children;
 }
