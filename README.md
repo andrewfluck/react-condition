@@ -1,7 +1,7 @@
 # React Condition
 [![Build Status](https://travis-ci.org/andrewfluck/react-condition.svg?branch=master)](https://travis-ci.org/andrewfluck/react-condition)
 
-React Condition works with React Hooks as part of [@leebyron](https://github.com/leebyron/react-loops)'s React Velcro architecture
+React Condition works with React Hooks as part of [@leebyron](https://github.com/leebyron)'s React Velcro architecture
 
 ## If conditions
 
@@ -73,7 +73,7 @@ Use the `expression` prop with `<Switch>` element to conditionally include certa
 </Switch>
 ```
 
-Alternatively, you can provide `then` as props to `<Case>` or `<Default>`.
+Alternatively, you can provide `then` as props to `<Case>` or `<Default>`
 
 ```js
 <Switch expression={"hot fucking pink"}>
@@ -83,3 +83,7 @@ Alternatively, you can provide `then` as props to `<Case>` or `<Default>`.
     <Default then={"no color"} />
 </Switch>
 ```
+
+## See also
+
+[@leebyron/react-loops](https://github.com/leebyron/react-loops) - The father (or mother, idfk) of this library
