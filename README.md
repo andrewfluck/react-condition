@@ -3,6 +3,16 @@
 
 React Condition works with React Hooks as part of [@leebyron](https://github.com/leebyron)'s React Velcro architecture
 
+# Installation
+
+```sh
+$ yarn add react-condition
+```
+
+```sh
+$ npm i react-condition
+```
+
 ## If conditions
 
 Use the `test` prop with `<If>` and `<ElseIf>` elements to conditionally include certain elements. When an `<If>` test is _truthy_ it does not render any `<ElseIf>` or `<Else>` children. However when it is _falsey_ it _only_ renders `<ElseIf>` and `<Else>` children.

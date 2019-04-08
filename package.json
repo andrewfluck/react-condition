@@ -1,6 +1,6 @@
 {
     "name": "react-condition",
-    "version": "1.0.0",
+    "version": "3.0.0",
     "description": "React Condition works with React Hooks as part of @leebyron's React Velcro architecture",
     "main": "react-condition.js",
     "types": "react-condition.d.ts",
