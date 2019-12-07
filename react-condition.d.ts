@@ -7,10 +7,10 @@ declare module "react-condition" {
 
   export function Switch(props: {
     expression: any;
-    children: Case | Default | null;
+    children: Children;
   }): JSX.Element;
 
-  export function Case(props: { value: any; children: Children }): JSX.Element;
+  export function Case(props: { value: any; children?: Children, then?: Children }): JSX.Element;
 
   type Default = (props: { children?: Children, then?: Children }) => JSX.Element;
 
