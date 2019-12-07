@@ -12,9 +12,9 @@ declare module "react-condition" {
 
   export function Case(props: { value: any; children: Children }): JSX.Element;
 
-  type Default = (props: { children: Children }) => JSX.Element;
+  type Default = (props: { children?: Children, then?: Children }) => JSX.Element;
 
-  type Case = (props: { value: any; children: Children }) => JSX.Element;
+  type Case = (props: { value: any; children?: Children, then?: Children }) => JSX.Element;
 
   type Children = Array<JSX.Element> | JSX.Element;
 
